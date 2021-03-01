@@ -7,15 +7,9 @@
 // Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha inserito un numero consentito.
 
 
-
-
-
 var computerNumbersList = [];
 
-var newNumber = false;
-
-
-for (var i = 1; computerNumbersList.length < 16; i++) {
+for (var i = 0; computerNumbersList.length < 16; i++) {
 
     var computerNumber = Math.floor(Math.random() * 100) + 1;
 
@@ -75,59 +69,5 @@ console.log(userNumbersList);
 
 document.write("User Numbers: " + userNumbersList + "<br>");
 
-document.write("Il tuo punteggio: " + userNumbersList.length);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-     
+document.write("Numero tentativi: " + userNumbersList.length);  
 
