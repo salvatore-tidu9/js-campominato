@@ -32,7 +32,7 @@ console.log(computerNumbersList);
 var userNumbersList = [];
 
 
-for (var i = 1; i <= 4; i++) {
+for (var i = 1; i <= 84; i++) {
     
     var userNumber = parseInt(prompt("Inserisci un numero tra 1 e 100"));
 
