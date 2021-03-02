@@ -6,6 +6,13 @@
 // La partita termina quando il giocatore inserisce un numero “vietato” o raggiunge il numero massimo possibile di numeri consentiti.
 // Al termine della partita il software deve comunicare il punteggio, cioè il numero di volte che l’utente ha inserito un numero consentito.
 
+// BONUS: (da fare solo se funziona tutto il resto)
+// all’inizio il software richiede anche una difficoltà all’utente che cambia il range di numeri casuali:
+// con difficoltà 0 => tra 1 e 100
+// con difficoltà 1 => tra 1 e 80
+// con difficoltà 2 => tra 1 e 50
+
+
 
 var computerNumbersList = [];
 
@@ -17,22 +24,47 @@ for (var i = 0; computerNumbersList.length < 16; i++) {
 
         computerNumbersList.push(computerNumber);
     }
-    
 }
 
 console.log(computerNumbersList);
 
 
+var gameMode = prompt("Quale livello di difficoltà preferisci: Facile, Normale o Difficile?").toLowerCase();
+
+var max;
+
+if (gameMode == "facile") {
+
+    max = 100;
+}
+
+else if (gameMode == "normale") {
+
+    max = 80;
+}
+
+else if (gameMode == "difficile") {
+
+    max = 50;
+}
+
+else if ((gameMode == "") || (gameMode != "facile") || (gameMode != "normale") || (gameMode != "difficile")) {
+
+    alert("Attenzione ! Inserire prima un livello di difficoltà.")
+
+    alert("Premi F5 per iniziare una nuova partita.");
+
+}
+
 var userNumbersList = [];
 
-
 for (var i = 1; i <= 84; i++) {
-    
-    var userNumber = parseInt(prompt("Inserisci un numero tra 1 e 100"));
 
-    if (isNaN(userNumber) || (userNumber == 0) || (userNumber == "") || (userNumber == "undefined")) {
+    var userNumber = parseInt(prompt("Inserisci un numero da 1 a " + max));
 
-        alert("Attenzione ! Devi inserire un numero compreso tra 1 e 100.")
+    if (isNaN(userNumber) || (userNumber < 1) || (userNumber > max) || (userNumber == "") || (userNumber == "undefined")) {
+
+        alert("Hai perso ! Dovevi inserire un numero compreso tra 1 e " + max);
 
         break;
 
@@ -40,7 +72,7 @@ for (var i = 1; i <= 84; i++) {
 
     else if (computerNumbersList.includes(userNumber)) {
 
-        alert("Partita terminata ! Numero già generato dal Computer.");
+        alert("Hai perso ! Il numero che hai scelto è stato già generato dal Computer.");
 
         break;
     }
@@ -55,7 +87,7 @@ for (var i = 1; i <= 84; i++) {
 
         else if (userNumbersList.indexOf(userNumber) != -1) {
 
-            alert("Partita terminata !...L' utente non può inserire più volte lo stesso numero.");
+            alert("Hai perso ! L' utente non può inserire più volte lo stesso numero.");
 
             break;
         }
@@ -64,6 +96,7 @@ for (var i = 1; i <= 84; i++) {
 
 }
 
+console.log(userNumber);
 
 console.log(userNumbersList);
 
@@ -71,3 +104,14 @@ document.write("User Numbers: " + userNumbersList + "<br>");
 
 document.write("Numero tentativi: " + userNumbersList.length);  
 
+if ( userNumbersList.length < 84) {
+
+    alert("Non ti arrendere...Riprova !");
+
+    alert("Premi F5 per iniziare una nuova partita.");
+}
+
+else {
+
+    alert("Hai vinto !")
+}
